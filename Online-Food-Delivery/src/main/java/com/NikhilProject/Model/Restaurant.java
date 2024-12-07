@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -37,9 +38,10 @@ public class Restaurant {
     private String openingHours;
 
     @Autowired
-    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL) // here we have given the CascadeType.ALL so that whenever we delete the Restaurant all the orders within that restaurant also gets deleted.
+    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,orphanRemoval = true) // here we have given the CascadeType.ALL so that whenever we delete the Restaurant all the orders within that restaurant also gets deleted.
     private List<Order> orders;
 
+    @Autowired
     @ElementCollection
     @Column(length = 1000)
     private List<String> images;
@@ -48,7 +50,7 @@ public class Restaurant {
 
     private boolean open;
 
-    @Autowired
+   @Autowired
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL)
     private List<Food> foods;

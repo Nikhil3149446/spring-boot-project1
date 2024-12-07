@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +24,7 @@ public class OrderItem {
 
     private Long totalPrice;
 
+    @Autowired
     private List<String> ingredients;
 
 

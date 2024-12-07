@@ -26,9 +26,9 @@ public class JwtTokenValidator extends OncePerRequestFilter {
     String jwt=request.getHeader(JwtConstant.JWT_HEADER);
 
     if(jwt!=null){
-        jwt=jwt.substring(7);
+        jwt=jwt.substring(7); // substring is 7 because we will get the token as the Bearer token so we have to extract the first 7 character then use it hence substring(7)
         try{
-            SecretKey key= Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+            SecretKey key= Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.toString().getBytes());
             Claims claims= Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
             String email=String.valueOf(claims.get("email"));
             String authorities=String.valueOf(claims.get("authorities"));

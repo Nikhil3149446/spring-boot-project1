@@ -19,9 +19,8 @@ public class IngredientCategory {
     private Long id;
 
     private String name;
-
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     private Restaurant restaurant;
 
     @Autowired

@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +32,10 @@ public class Order {
     private String orderStatus;
 
     private Date createdAt;
+
     @ManyToOne
     private Address deliveryAddress;
-
+    @Autowired
     @OneToMany
     private List<OrderItem> items;
 

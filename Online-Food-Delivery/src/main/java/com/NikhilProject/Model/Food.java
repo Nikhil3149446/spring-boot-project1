@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class Food {
 
     @ManyToOne
     private Category foodCategory;
-
+    @Autowired
     @Column(length = 1000)
     @ElementCollection // using this it will create a separate table for the food Images.
     private List<String> images;

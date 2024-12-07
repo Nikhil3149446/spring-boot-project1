@@ -16,8 +16,7 @@ public class Category {
     private Long id;
 
     private String name;
-
-    @ManyToOne
     @JsonIgnore // it is for ignoring the Restaurant whenever we make the call to the Category. We will create a separate API for calling the Restaurant inside the Category.
+    @ManyToOne
     private Restaurant restaurant;
 }

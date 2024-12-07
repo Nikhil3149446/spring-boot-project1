@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Cart {
     private Long total;
 
     @Autowired
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<CartItem> item;
 
 
