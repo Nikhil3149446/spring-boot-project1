@@ -8,6 +8,7 @@ import com.NikhilProject.Repository.UserRepository;
 import com.NikhilProject.Response.AuthResponse;
 import com.NikhilProject.Service.CustomerDetailsService;
 import com.NikhilProject.config.JwtProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-
+@Slf4j
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -37,13 +38,14 @@ public class AuthController {
 
     @Autowired
     private CartRepository cartRepository;
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.POST,path = "/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception{
         User isEmailExists=userRepository.findByEmail(user.getEmail());
         if(isEmailExists!=null){
             throw new Exception("Email is already used with another account");
         }
-
+        log.info("The Recieved User in the singup controller is {}",user);
         User createdUser=new User();
         createdUser.setEmail(user.getEmail());
         createdUser.setFullName(user.getFullName());
@@ -68,6 +70,7 @@ public class AuthController {
 
 
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(method = RequestMethod.POST,path = "/signin")
     public ResponseEntity<AuthResponse> loginHandler(@RequestBody User user) throws Exception{
 

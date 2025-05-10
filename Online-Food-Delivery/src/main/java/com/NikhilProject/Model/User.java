@@ -22,8 +22,11 @@ public class User {
     private Long id;
     private String fullName;
     private String email;
+    private String phoneNumber;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String reTypePassword;
     private USER_ROLE role;
     @Autowired
     @JsonIgnore     // because whenever i fetch the user i dont need to fetch his order basically it ignores this field whenever we call the User data

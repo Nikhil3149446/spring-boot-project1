@@ -41,9 +41,9 @@ public class Food {
 
     private boolean isSeasonal;
 
-    @Autowired // maine video se alag kra hai usne new keyword use krke bnaya tha list
+//    @Autowired // maine video se alag kra hai usne new keyword use krke bnaya tha list
     @ManyToMany
-    private List<IngredientsItem> ingredients;
+    private List<IngredientsItem> ingredients=new ArrayList<>();
 
     private Date creationDate;
 }

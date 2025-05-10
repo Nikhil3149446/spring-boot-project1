@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("api/users")
@@ -20,7 +17,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/profile")
     public ResponseEntity<User> getUserWithJwtToken(@RequestHeader("Authorization") String jwt){
         User user=userService.findUserByJsonToken(jwt);
